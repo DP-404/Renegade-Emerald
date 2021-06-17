@@ -10,8 +10,8 @@ LavaridgeTown_OnTransition: @ 81EA4DE
 	setflag FLAG_VISITED_LAVARIDGE_TOWN
 	call_if_set FLAG_WHITEOUT_TO_LAVARIDGE, LavaridgeTown_EventScript_ClearLavaridgeWhiteOut
 	call_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_ShowMtChimneyTrainers
-	call Common_EventScript_SetupRivalGfxId
-	call Common_EventScript_SetupRivalOnBikeGfxId
+	@ call Common_EventScript_SetupRivalGfxId
+	@ call Common_EventScript_SetupRivalOnBikeGfxId
 	compare VAR_LAVARIDGE_TOWN_STATE, 1
 	call_if_eq LavaridgeTown_EventScript_CheckSetRivalPos
 	compare VAR_LAVARIDGE_TOWN_STATE, 1
@@ -30,8 +30,8 @@ LavaridgeTown_EventScript_CheckSetRivalPos:: @ 81EA518
 
 LavaridgeTown_EventScript_SetRivalPos:: @ 81EA529
 	setobjectxyperm LOCALID_RIVAL, 11, 9
-	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 9, 8
-	setobjectmovementtype LOCALID_RIVAL_ON_BIKE, MOVEMENT_TYPE_FACE_UP
+	@ setobjectxyperm LOCALID_RIVAL_ON_BIKE, 9, 8
+	@ setobjectmovementtype LOCALID_RIVAL_ON_BIKE, MOVEMENT_TYPE_FACE_UP
 	clearflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL
 	return
 
@@ -55,20 +55,21 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles:: @ 81EA551
 	compare VAR_0x8008, 9
 	call_if_ne LavaridgeTown_EventScript_RivalExitHerbShop
 	delay 20
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq LavaridgeTown_EventScript_PlayMayMusic
-	compare VAR_RESULT, FEMALE
-	call_if_eq LavaridgeTown_EventScript_PlayBrendanMusic
+	@ checkplayergender
+	@ compare VAR_RESULT, MALE
+	@ call_if_eq LavaridgeTown_EventScript_PlayMayMusic
+	@ compare VAR_RESULT, FEMALE
+	@ call_if_eq LavaridgeTown_EventScript_PlayBrendanMusic
 	compare VAR_0x8008, 9
 	call_if_eq LavaridgeTown_EventScript_RivalApproachPlayer1
 	compare VAR_0x8008, 9
 	call_if_ne LavaridgeTown_EventScript_RivalApproachPlayer2
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LavaridgeTown_EventScript_MayGiveGoGoggles
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LavaridgeTown_EventScript_BrendanGiveGoGoggles
+	@ checkplayergender
+	@ compare VAR_RESULT, MALE
+	@ goto_if_eq LavaridgeTown_EventScript_MayGiveGoGoggles
+	@ compare VAR_RESULT, FEMALE
+	@ goto_if_eq LavaridgeTown_EventScript_BrendanGiveGoGoggles
+	goto LavaridgeTown_EventScript_BirchGiveGoGoggles
 	end
 
 LavaridgeTown_EventScript_MayGiveGoGoggles:: @ 81EA5B5
@@ -87,15 +88,25 @@ LavaridgeTown_EventScript_BrendanGiveGoGoggles:: @ 81EA5DA
 	goto LavaridgeTown_EventScript_RivalExit
 	end
 
+LavaridgeTown_EventScript_BirchGiveGoGoggles:: @ 81EA5B5
+	msgbox LavaridgeTown_Text_BirchNiceBadgesTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_SHARE
+	setflag FLAG_RECEIVED_EXP_SHARE
+	msgbox LavaridgeTown_Text_BirchExplainExpShare, MSGBOX_DEFAULT
+	goto LavaridgeTown_EventScript_RivalExit
+	end
+
 LavaridgeTown_EventScript_RivalExit:: @ 81EA5FF
 	closemessage
-	removeobject LOCALID_RIVAL
-	addobject LOCALID_RIVAL_ON_BIKE
+	@ removeobject LOCALID_RIVAL
+	@ addobject LOCALID_RIVAL_ON_BIKE
 	delay 30
 	compare VAR_0x8008, 9
 	call_if_eq LavaridgeTown_EventScript_RivalExit1
 	compare VAR_0x8008, 9
 	call_if_ne LavaridgeTown_EventScript_RivalExit2
+	removeobject LOCALID_RIVAL
+	setflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL
 	removeobject LOCALID_RIVAL_ON_BIKE
 	setvar VAR_LAVARIDGE_TOWN_STATE, 2
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
@@ -153,12 +164,12 @@ LavaridgeTown_EventScript_RivalApproachPlayer2:: @ 81EA6AC
 
 LavaridgeTown_EventScript_RivalExit1:: @ 81EA6B7
 	applymovement OBJ_EVENT_ID_PLAYER, LavaridgeTown_Movement_PlayerWatchRivalExit
-	applymovement LOCALID_RIVAL_ON_BIKE, LavaridgeTown_Movement_RivalExit1
+	applymovement LOCALID_RIVAL, LavaridgeTown_Movement_BirchExit1
 	waitmovement 0
 	return
 
 LavaridgeTown_EventScript_RivalExit2:: @ 81EA6C9
-	applymovement LOCALID_RIVAL_ON_BIKE, LavaridgeTown_Movement_RivalExit2
+	applymovement LOCALID_RIVAL, LavaridgeTown_Movement_BirchExit2
 	waitmovement 0
 	return
 
@@ -173,6 +184,30 @@ LavaridgeTown_Movement_RivalExit2: @ 81EA6D4
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
+	step_end
+
+LavaridgeTown_Movement_BirchExit1: @ 81EA6E3
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+	
+LavaridgeTown_Movement_BirchExit2: @ 81EA6D4
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
 	step_end
 
 LavaridgeTown_Movement_PlayerWatchRivalExit: @ 81EA6DF
@@ -335,6 +370,26 @@ LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad: @ 81EAA2E
 	.string "Unlike you, {PLAYER}, your dad looks like\n"
 	.string "he really is tough.\p"
 	.string "See you around!$"
+
+LavaridgeTown_Text_BirchNiceBadgesTakeThis:
+	.string "PROF. BIRCH: Hi {PLAYER}{KUN}!\n"
+	.string "How are you doing?\p"
+	.string "Oh, so you're taking the challenges\n"
+	.string "of the GYMS? You seem like your father\l"
+	.string "NORMAN when he was young. And look, now\l"
+	.string "he's the leader of PETALBURG GYM!\p"
+	.string "By the way, it's good to find you here.\n"
+	.string "I already gave one to {RIVAL}, so you\l"
+	.string "can have this one too.$"
+
+LavaridgeTown_Text_BirchExplainExpShare:
+	.string "If you turn on that EXP. SHARE, all\n"
+	.string "your POKéMON will get EXP Points, even\l"
+	.string "if they didn't actually battle.\p"
+	.string "Of course, you can turn it on and off\n"
+	.string "whenever you want.\p"
+	.string "Well then {PLAYER}{KUN}, I wish you good luck\n"
+	.string "with your POKéDEX. See you later!$"
 
 LavaridgeTown_Text_HaveEggWillYouTakeIt: @ 81EAB80
 	.string "I have here an EGG.\p"
