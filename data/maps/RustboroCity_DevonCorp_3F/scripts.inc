@@ -167,6 +167,8 @@ RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_SS_TICKET
+	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
 	call RustboroCity_DevonCorp_3F_EventScript_HideMrBriney
 	msgbox RustboroCity_DevonCorp_3F_Text_AfterGivingTicket, MSGBOX_DEFAULT
 	closemessage

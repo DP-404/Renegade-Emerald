@@ -446,6 +446,10 @@ MauvilleCity_EventScript_CompletedNewMauville:: @ 81DF784
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_TM24_FROM_WATTSON
+	msgbox MauvilleCity_Text_WattsonAlsoTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_GO_GOGGLES
+	setflag FLAG_RECEIVED_GO_GOGGLES
+	msgbox MauvilleCity_Text_WattsonExplainGoGoggles, MSGBOX_DEFAULT
 	msgbox MauvilleCity_Text_WattsonYoungTakeCharge, MSGBOX_DEFAULT
 	release
 	end
@@ -603,7 +607,7 @@ MauvilleCity_Text_WattsonWontBeChallenge: @ 81E0154
 	.string "WATTSON: Don't you worry about it.\n"
 	.string "It won't be a challenge to you.\p"
 	.string "The entrance to NEW MAUVILLE is just\n"
-	.string "a short SURF away from ROUTE 110.\p"
+	.string "a short stroll away from ROUTE 110.\p"
 	.string "That's it, then, you have my trust!\n"
 	.string "Wahahahaha!$"
 
@@ -614,6 +618,17 @@ MauvilleCity_Text_WattsonThanksTakeTM: @ 81E020E
 	.string "This is my thanks--a TM containing\n"
 	.string "THUNDERBOLT!\p"
 	.string "Go on, you've earned it!$"
+
+MauvilleCity_Text_WattsonAlsoTakeThis:
+	.string "WATTSON: I also want you to take this.\n"
+	.string "It'll be useful for a trainer like you.$"
+
+MauvilleCity_Text_WattsonExplainGoGoggles:
+	.string "WATTSON: Those are my old GO-GOGGLES,\n"
+	.string "you can have them now. Wahahahaha!\p"
+	.string "You'll need to wear them if you're\n"
+	.string "thinking about getting across the desert\l"
+	.string "on ROUTE 111.$"
 
 MauvilleCity_Text_WattsonYoungTakeCharge: @ 81E02AA
 	.string "WATTSON: Wahahahaha!\p"
