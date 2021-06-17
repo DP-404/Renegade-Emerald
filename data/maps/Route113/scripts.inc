@@ -151,7 +151,7 @@ Route113_Text_FunWalkingThroughAsh: @ 81F23CA
 
 Route113_Text_RouteSign111: @ 81F2440
 	.string "ROUTE 113\n"
-	.string "{RIGHT_ARROW} ROUTE 111$"
+	.string "{RIGHT_ARROW} ROUTE 111 {DOWN_ARROW} ROUTE 112 $"
 
 Route113_Text_RouteSignFallarbor: @ 81F2456
 	.string "ROUTE 113\n"
