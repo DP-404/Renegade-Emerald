@@ -70,6 +70,7 @@ RusturfTunnel_EventScript_ClearTunnelScene:: @ 822CEAE
 	call_if_eq RusturfTunnel_EventScript_WandasBoyfriendApproachPlayer
 	giveitem ITEM_HM04
 	setflag FLAG_RECEIVED_HM04
+	call_if_unset FLAG_DELIVERED_STEVEN_LETTER, RusturfTunnel_EventScript_MoveMrBrineyToShipyard
 	msgbox RusturfTunnel_Text_ExplainStrength, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_TEMP_1, 1
@@ -89,6 +90,11 @@ RusturfTunnel_EventScript_ClearTunnelScene:: @ 822CEAE
 	call RusturfTunnel_EventScript_SetRusturfTunnelOpen
 	releaseall
 	end
+
+RusturfTunnel_EventScript_MoveMrBrineyToShipyard::
+	call RustboroCity_DevonCorp_3F_EventScript_HideMrBriney
+	clearflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
+	return
 
 RusturfTunnel_EventScript_BoyfriendApproachWanda1:: @ 822CF5D
 	applymovement OBJ_EVENT_ID_PLAYER, RusturfTunnel_Movement_PlayerWatchBoyfriend1

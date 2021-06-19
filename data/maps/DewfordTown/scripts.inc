@@ -133,6 +133,10 @@ DewfordTown_EventScript_FishingNotSoGood:: @ 81E9656
 	release
 	end
 
+DewfordTown_EventScript_Sailor::
+	msgbox DewfordTown_Text_NoShipsComingHere, MSGBOX_NPC
+	end
+
 DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
 	call EventScript_BackupMrBrineyLocation
 	setobjectpriority LOCALID_BRINEY_DEWFORD, MAP_DEWFORD_TOWN, 0
@@ -718,6 +722,14 @@ DewfordTown_Text_SlateportWereSettingSail: @ 81E9D3A
 DewfordTown_Text_JustTellMeWhenYouNeedToSetSail: @ 81E9D8F
 	.string "MR. BRINEY: You just tell me whenever\n"
 	.string "you need to set sail again!$"
+
+DewfordTown_Text_NoShipsComingHere:
+	.string "I'm sorry, but there is no ship\n"
+	.string "right now in the HARBOR.\p"
+	.string "I heard there was a ferry being\n"
+	.string "built in SLATEPORT CITY though.\p"
+	.string "I guess that when they finish it\n"
+	.string "we'll be able to sail there.$"
 
 DewfordTown_Text_GettingItchToFish: @ 81E9DD1
 	.string "This is a renowned fishing spot.\n"

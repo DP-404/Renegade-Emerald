@@ -206,7 +206,8 @@ SlateportCity_Harbor_EventScript_ChooseDestination:: @ 820CB1A
 	multichoicedefault 18, 8, MULTI_SSTIDAL_SLATEPORT_NO_BF, 2, FALSE
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_Lilycove
-	case 1, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+	case 1, SlateportCity_Harbor_EventScript_Dewford
+	case 2, SlateportCity_Harbor_EventScript_CancelDestinationSelect
 	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
 	end
 
@@ -214,8 +215,9 @@ SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier:: @ 820CB50
 	multichoicedefault 17, 6, MULTI_SSTIDAL_SLATEPORT_WITH_BF, 2, FALSE
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_Lilycove
-	case 1, SlateportCity_Harbor_EventScript_BattleFrontier
-	case 2, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+	case 1, SlateportCity_Harbor_EventScript_Dewford
+	case 2, SlateportCity_Harbor_EventScript_BattleFrontier
+	case 3, SlateportCity_Harbor_EventScript_CancelDestinationSelect
 	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
 	end
 
@@ -232,6 +234,16 @@ SlateportCity_Harbor_EventScript_Lilycove:: @ 820CB92
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_BOARD_SLATEPORT
 	call SlateportCity_Harbor_EventScript_BoardFerry
 	warp MAP_SS_TIDAL_CORRIDOR, 255, 1, 10
+	waitstate
+	release
+	end
+
+SlateportCity_Harbor_EventScript_Dewford:: @ 820CB92
+	msgbox SlateportCity_Harbor_Text_DewfordItIs, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq SlateportCity_Harbor_EventScript_ChooseNewDestination
+	call SlateportCity_Harbor_EventScript_BoardFerry
+	warp MAP_DEWFORD_TOWN_HARBOR, 255, 8, 4
 	waitstate
 	release
 	end
@@ -450,6 +462,9 @@ SlateportCity_Harbor_Text_SailAnotherTime: @ 820CF71
 
 SlateportCity_Harbor_Text_LilycoveItIs: @ 820CF93
 	.string "LILYCOVE CITY it is, then!$"
+
+SlateportCity_Harbor_Text_DewfordItIs: @ 820CF93
+	.string "DEWFORD TOWN it is, then!$"
 
 SlateportCity_Harbor_Text_BattleFrontierItIs: @ 820CFAE
 	.string "BATTLE FRONTIER it is, then!$"

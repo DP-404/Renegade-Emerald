@@ -115,7 +115,7 @@
       "id": "LAYOUT_DEWFORD_TOWN",
       "name": "DewfordTown_Layout",
       "width": 20,
-      "height": 20,
+      "height": 33,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/DewfordTown/border.bin",
@@ -4410,6 +4410,16 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_TOWN_HARBOR",
+      "name": "DewfordTown_Harbor_Layout",
+      "width": 17,
+      "height": 13,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_IslandHarbor",
+      "border_filepath": "data/layouts/DewfordTown_Harbor/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordTown_Harbor/map.bin"
     }
   ]
 }

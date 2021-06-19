@@ -167,9 +167,11 @@ RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_SS_TICKET
+	call RustboroCity_DevonCorp_3F_EventScript_HideMrBriney
+	setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
 	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
 	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
-	call RustboroCity_DevonCorp_3F_EventScript_HideMrBriney
+	setflag FLAG_SAIL_TO_DEWFORD
 	msgbox RustboroCity_DevonCorp_3F_Text_AfterGivingTicket, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection

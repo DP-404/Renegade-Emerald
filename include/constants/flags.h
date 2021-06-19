@@ -45,7 +45,7 @@
 #define FLAG_HIDE_SS_TIDAL_CABIN_RIVAL    0x21
 #define FLAG_HIDE_ROUTE_118_SUDOWOODO    0x22
 #define FLAG_HIDE_ROUTE_121_KECLEON_1    0x23
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+#define FLAG_SAIL_TO_DEWFORD    0x24
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
