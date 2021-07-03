@@ -555,6 +555,7 @@ extern const u8 gBirchDexRatingText_LessThan180[];
 extern const u8 gBirchDexRatingText_LessThan190[];
 extern const u8 gBirchDexRatingText_LessThan200[];
 extern const u8 gBirchDexRatingText_DexCompleted[];
+extern const u8 gProfBirch_Text_LookForAssistantHM[];
 
 // player pc text
 extern const u8 gText_WhatWouldYouLike[];

@@ -1016,7 +1016,17 @@ Route110_Text_RegisteredBirchInPokenav: @ 81F0C0C
 
 Route110_Text_KeepAnEyeOutForRival: @ 81F0C33
 	.string "PROF. BIRCH: {PLAYER}{KUN}…\p"
-	.string "Please keep an eye out for my {RIVAL}.\n"
+	.string "Please keep an eye out for my {RIVAL}.\p"
+	.string "Before I forget, I have to tell you\n"
+	.string "something important.\p"
+	.string "I have some assistants working\n"
+	.string "with me ingestigating POKéMON.\p"
+	.string "I gave them a gift for both you\n"
+	.string "and {RIVAL}, but they'll only\l"
+	.string "give you them according to\l"
+	.string "your work in your POKéDEX."
+	.string "Have you already met any of them\n"
+	.string "in your way here?\p"
 	.string "… … … … … …\p"
 	.string "Well, I had better get going.\n"
 	.string "See you again, {PLAYER}{KUN}!$"

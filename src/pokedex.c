@@ -4,9 +4,11 @@
 #include "data.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "field_message_box.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "main.h"
 #include "malloc.h"
 #include "menu.h"
@@ -28,6 +30,7 @@
 #include "window.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/items.h"
 
 enum
 {
@@ -5572,4 +5575,74 @@ static void PrintSearchParameterTitle(u32 y, const u8* str)
 static void ClearSearchParameterBoxText(void)
 {
     ClearSearchMenuRect(144, 8, 96, 96);
+}
+
+u16 GetLowestNotReceivedHM(void)
+{
+	if (!FlagGet(FLAG_RECEIVED_HM01))
+		return ITEM_HM01;
+	if (!FlagGet(FLAG_RECEIVED_HM05))
+		return ITEM_HM05;
+	if (!FlagGet(FLAG_RECEIVED_HM06))
+		return ITEM_HM06;
+	if (!FlagGet(FLAG_RECEIVED_HM04))
+		return ITEM_HM04;
+	if (!FlagGet(FLAG_RECEIVED_HM03))
+		return ITEM_HM03;
+	if (!FlagGet(FLAG_RECEIVED_HM02))
+		return ITEM_HM02;
+	if (!FlagGet(FLAG_RECEIVED_HM08))
+		return ITEM_HM08;
+	if (!FlagGet(FLAG_RECEIVED_HM07))
+		return ITEM_HM07;
+	if (!FlagGet(FLAG_RECEIVED_HM08))
+		return ITEM_HM08;
+}
+
+u16 GetHMPokemonCountByHM(u16 itemHM)
+{
+	switch (itemHM) {
+		case ITEM_HM01: return 40;
+		case ITEM_HM05: return 80;
+		case ITEM_HM06: return 120;
+		case ITEM_HM04: return 160;
+		case ITEM_HM03: return 200;
+		case ITEM_HM02: return 240;
+		case ITEM_HM08: return 280;
+		case ITEM_HM07: return 320;
+	}
+}
+
+u16 GetHMPokemonCount(void)
+{
+	return GetHMPokemonCountByHM(GetLowestNotReceivedHM());
+}
+
+void SetNextHMToGetAssistant(void)
+{
+	ConvertIntToDecimalStringN(gStringVar2, GetHMPokemonCountByHM(gSpecialVar_0x8009), STR_CONV_MODE_LEFT_ALIGN, 3);
+	CopyItemName(gSpecialVar_0x8009, gStringVar3);
+	if (GetNationalPokedexCount(FLAG_GET_CAUGHT) >= GetHMPokemonCountByHM(gSpecialVar_0x8009)) {
+		gSpecialVar_0x8004 = 1;
+	}
+	else
+		gSpecialVar_0x8004 = 0;
+}
+
+void SetNextHMToGet(void)
+{
+	CopyItemName(GetLowestNotReceivedHM(), gStringVar3);
+}
+
+bool8 ShouldShowMessageNextHMToGet(void)
+{
+	u16 lowestReceivedHM = GetLowestNotReceivedHM();
+		
+	if (lowestReceivedHM != ITEM_NONE) {
+		if (GetNationalPokedexCount(FLAG_GET_CAUGHT) >= GetHMPokemonCountByHM(lowestReceivedHM)) {
+			CopyItemName(lowestReceivedHM, gStringVar3);
+			return TRUE;
+		}
+	}
+	return FALSE;
 }

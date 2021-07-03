@@ -25,8 +25,15 @@ FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite:: @ 8200F38
 	call Common_EventScript_PlayerHandedOverTheItem
 	setflag FLAG_RECEIVED_TM27
 	msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
+	closemessage
 	release
+	goto FallarborTown_CozmosHouse_EventScript_ReadyStrength
 	end
+	
+FallarborTown_CozmosHouse_EventScript_ReadyStrength::
+	setvar VAR_0x8009, 4
+	setvar VAR_0x800A, 1
+	goto ScientistAssistant_EventScript_Main
 
 FallarborTown_CozmosHouse_EventScript_NoticeMeteorite:: @ 8200F8B
 	msgbox FallarborTown_CozmosHouse_Text_MeteoriteWillNeverBeMineNow, MSGBOX_DEFAULT
@@ -44,6 +51,7 @@ FallarborTown_CozmosHouse_EventScript_DeclineGiveMeteorite:: @ 8200FA5
 	end
 
 FallarborTown_CozmosHouse_EventScript_GaveMeteorite:: @ 8200FB2
+	goto_if_unset FLAG_RECEIVED_HM04, FallarborTown_CozmosHouse_EventScript_ReadyStrength
 	msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
 	release
 	end

@@ -2092,6 +2092,8 @@ void BufferPokedexRatingForMatchCall(u8 *destStr)
         ConvertIntToDecimalStringN(gStringVar1, numSeen, STR_CONV_MODE_LEFT_ALIGN, 3);
         ConvertIntToDecimalStringN(gStringVar2, numCaught, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringExpandPlaceholders(str, gBirchDexRatingText_OnANationwideBasis);
+		if (ShouldShowMessageNextHMToGet())
+			StringExpandPlaceholders(str, gProfBirch_Text_LookForAssistantHM);
     }
 
     Free(buffer);

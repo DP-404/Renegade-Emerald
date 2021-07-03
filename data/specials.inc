@@ -542,3 +542,7 @@ gSpecials:: @ 81DBA64
 	def_special CheckPartyHasMonWithCut
 	def_special CheckPartyHasMonWithStreght
 	def_special CheckPartyHasMonWithRockSmash
+	def_special SetNextHMToGet
+	def_special GetHMPokemonCount
+	def_special GetLowestNotReceivedHM
+	def_special SetNextHMToGetAssistant

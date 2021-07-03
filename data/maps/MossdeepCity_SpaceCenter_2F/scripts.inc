@@ -105,6 +105,26 @@ MossdeepCity_SpaceCenter_2F_Movement_Grunt7Defeated: @ 8223E89
 	unlock_facing_direction
 	step_end
 
+MossdeepCity_SpaceCenter_2F_EventScript_DiveAssistant::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_SpaceCenter_2F_EventScript_DiveAssistantNormal
+	compare VAR_MOSSDEEP_CITY_STATE, 2
+	goto_if_eq MossdeepCity_SpaceCenter_2F_EventScript_DiveAssistantMagma
+	compare VAR_MOSSDEEP_CITY_STATE, 2
+	goto_if_lt MossdeepCity_SpaceCenter_2F_EventScript_DiveAssistantNormal
+	goto MossdeepCity_SpaceCenter_2F_EventScript_DiveAssistantMagma
+	end
+
+MossdeepCity_SpaceCenter_2F_EventScript_DiveAssistantNormal::
+	setvar VAR_0x8008, 8
+	setvar VAR_0x8009, 0
+	goto ScientistAssistant_EventScript_Main
+
+MossdeepCity_SpaceCenter_2F_EventScript_DiveAssistantMagma::
+	msgbox MossdeepCity_SpaceCenter_2F_Text_SeomeoneMustStopMagma, MSGBOX_DEFAULT
+	end
+
 MossdeepCity_SpaceCenter_2F_EventScript_Scientist:: @ 8223E8D
 	lock
 	faceplayer
@@ -376,6 +396,11 @@ MossdeepCity_SpaceCenter_2F_EventScript_BrendanRayquazaCall:: @ 822419A
 	pokenavcall MatchCall_Text_BrendanRayquazaCall
 	waitmessage
 	return
+
+MossdeepCity_SpaceCenter_2F_Text_SeomeoneMustStopMagma:
+	.string "Those from TEAM MAGMA have been doing\n"
+	.string "whatever they want. Someone has to\l"
+	.string "stop them for good.$"
 
 MossdeepCity_SpaceCenter_2F_Text_MossdeepIdealForRockets: @ 82241A1
 	.string "MOSSDEEP has mainly sunny weather,\n"
