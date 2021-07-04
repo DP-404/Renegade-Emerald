@@ -31,10 +31,10 @@ LilycoveCity_ContestLobby_EventScript_ReceptionWelcome:: @ 8279CEA
 
 LilycoveCity_ContestLobby_EventScript_GivePokeblockCase:: @ 8279CF3
 	msgbox LilycoveCity_ContestLobby_Text_ReceptionDontHavePokeblockCase, MSGBOX_DEFAULT
-	giveitem ITEM_POKEBLOCK_CASE
-	setflag FLAG_RECEIVED_POKEBLOCK_CASE
-	msgbox LilycoveCity_ContestLobby_Text_NowThatWeveClearedThatUp, MSGBOX_DEFAULT
-	return
+	@ giveitem ITEM_POKEBLOCK_CASE
+	@ setflag FLAG_RECEIVED_POKEBLOCK_CASE
+	@ msgbox LilycoveCity_ContestLobby_Text_NowThatWeveClearedThatUp, MSGBOX_DEFAULT
+	end
 
 LilycoveCity_ContestLobby_EventScript_PickUpPrize:: @ 8279D13
 	msgbox LilycoveCity_ContestLobby_Text_PokemonWonWeHavePrize, MSGBOX_DEFAULT
@@ -1483,8 +1483,12 @@ LilycoveCity_ContestLobby_Text_ReceptionDontHavePokeblockCase: @ 827ADA7
 	.string "POKéMON CONTESTS.\p"
 	.string "Oh? It appears that you don't have\n"
 	.string "a {POKEBLOCK} CASE yet.\p"
-	.string "In that case, we need to provide you\n"
-	.string "with this!$"
+	.string "I do apologize, but looks like we\n"
+	.string "ran out of supplies.\p"
+	.string "And without one, you are not allowed\n"
+	.string "to participate. I'm very sorry.$"
+	@ .string "In that case, we need to provide you\n"
+	@ .string "with this!$"
 
 LilycoveCity_ContestLobby_Text_NowThatWeveClearedThatUp: @ 827AE47
 	.string "Okay, now that we've cleared that\n"

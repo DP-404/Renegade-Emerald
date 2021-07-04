@@ -330,6 +330,10 @@ LilycoveCity_EventScript_BattleBrendanMudkip:: @ 81E2F2E
 
 LilycoveCity_EventScript_DefeatedMay:: @ 81E2F3E
 	msgbox LilycoveCity_Text_MayGoingBackToLittleroot, MSGBOX_DEFAULT
+	msgbox LilycoveCity_Text_MayButBeforeWantGiveYouThis, MSGBOX_DEFAULT
+	giveitem ITEM_POKEBLOCK_CASE
+	setflag FLAG_RECEIVED_POKEBLOCK_CASE
+	msgbox LilycoveCity_Text_MayExplainPokeblockCase, MSGBOX_DEFAULT
 	setvar VAR_RESULT, FALSE
 	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_CheckFinalBadge
 	compare VAR_RESULT, FALSE
@@ -364,6 +368,10 @@ LilycoveCity_EventScript_MayBattleFrontier:: @ 81E2FA1
 
 LilycoveCity_EventScript_DefeatedBrendan:: @ 81E2FAA
 	msgbox LilycoveCity_Text_BrendanGoingBackToLittleroot, MSGBOX_DEFAULT
+	msgbox LilycoveCity_Text_BrendanButBeforeWantGiveYouThis, MSGBOX_DEFAULT
+	giveitem ITEM_POKEBLOCK_CASE
+	setflag ITEM_POKEBLOCK_CASE
+	msgbox LilycoveCity_Text_BrendanExplainPokeblockCase
 	setvar VAR_RESULT, FALSE
 	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_CheckFinalBadge
 	compare VAR_RESULT, FALSE
@@ -431,6 +439,8 @@ LilycoveCity_Text_MayShoppingLetsBattle: @ 81E3061
 	.string "Of course, I've also caught a lot of\n"
 	.string "POKéMON, and I'm raising them\l"
 	.string "properly, too.\p"
+	.string "So, I thought I could have some time\n"
+	.string "for myself here in LILYCOVE, but…"
 	.string "Actually, I'm more worried if you're\n"
 	.string "raising POKéMON properly, {PLAYER}{KUN}.\p"
 	.string "I'll battle with you, so you can show\n"
@@ -463,6 +473,22 @@ LilycoveCity_Text_MayGoingBackToLittleroot: @ 81E32FB
 	.string "I've caught a decent group of POKéMON,\n"
 	.string "and my POKéDEX is coming along, so\l"
 	.string "I'm going home to show my dad.$"
+
+LilycoveCity_Text_MayButBeforeWantGiveYouThis:
+	.string "But I wanted to give you this before.\n"
+	.string "It'll be very helpful."
+
+LilycoveCity_Text_MayExplainPokeblockCase:
+	.string "That's my spare POKEBLOCK CASE.\n"
+	.string "I got two in case I needed an\l"
+	.string "extra one, but you can have it\l"
+	.string "as a reward for beating me.\p"
+	.string "With it you can make POKEBLOCKS at the\n"
+	.string "CONTEST HALL, participate in events there\l"
+	.string "and even have access to the SAFARI ZONE!\p"
+	.string "I think my dad told me that he had\n"
+	.string "a helper in there. You should try paying\l"
+	.string "him a visit while you catch POKéMON.$"
 
 LilycoveCity_Text_MayYouGoingToCollectBadges: @ 81E3398
 	.string "{PLAYER}{KUN}, what are you going to do?\p"
@@ -497,7 +523,8 @@ LilycoveCity_Text_BrendanShoppingLetsBattle: @ 81E3608
 	.string "BRENDAN: Oh, hey, it's {PLAYER}.\p"
 	.string "I'm running an errand for my dad.\n"
 	.string "No, I'm not buying any DOLLS.\p"
-	.string "Anyways, it's been a while.\p"
+	.string "Anyways, it's been a while since we\n"
+	.string "were in an open ground, so…\p"
 	.string "Want to have a battle to see who's been\n"
 	.string "raising POKéMON better?$"
 
@@ -525,6 +552,24 @@ LilycoveCity_Text_BrendanGoingBackToLittleroot: @ 81E37D7
 	.string "You know I'm helping out my dad on his\n"
 	.string "POKéDEX. It's coming together pretty\l"
 	.string "decently, so I should go show him.$"
+
+LilycoveCity_Text_BrendanButBeforeWantGiveYouThis:
+	.string "Well, I guess I should give you this.\n"
+	.string "It may be very helpful."
+
+LilycoveCity_Text_BrendanExplainPokeblockCase:
+	.string "That's another POKEBLOCK CASE I have.\n"
+	.string "I got two just in case, but you can\l"
+	.string "have the extra one as a reward\l"
+	.string "for this battle.\p"
+	.string "You can store there the POKEBLOCKS\n"
+	.string "you make at the CONTEST HALL.\p"
+	.string "It also allows you to participate in\n"
+	.string "events there and enter the SAFARI ZONE.\p"
+	.string "If I remember correctly, dad told me\n"
+	.string "that he had a helper investigating there.\p"
+	.string "You should go there too and catch\n"
+	.string "some POKéMON as well.$"
 
 LilycoveCity_Text_BrendanYouGoingToCollectBadges: @ 81E3876
 	.string "{PLAYER}, what are you going to do?\p"
