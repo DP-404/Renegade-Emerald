@@ -33,7 +33,19 @@ RustboroCity_Gym_EventScript_GiveRockTomb:: @ 8212FA4
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM39
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
+	call_if_set FLAG_RECEIVED_POKENAV, RustboroCity_Gym_EventScript_RoxanneRegister
 	release
+	end
+
+RustboroCity_Gym_EventScript_RoxanneRegister::
+	closemessage
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox RustboroCity_Gym_Text_RegisteredRoxanne, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
 	end
 
 RustboroCity_Gym_EventScript_RoxanneRematch:: @ 8212FC8

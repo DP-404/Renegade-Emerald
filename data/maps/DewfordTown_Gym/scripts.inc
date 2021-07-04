@@ -175,10 +175,14 @@ DewfordTown_Gym_EventScript_BrawlyDefeated:: @ 81FC7F7
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
-	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
-	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+    call_if_unset FLAG_ENABLE_ROXANNE_MATCH_CALL, DewfordTown_Gym_EventScript_SetupRoxanneFirstCall
 	release
 	end
+
+DewfordTown_Gym_EventScript_SetupRoxanneFirstCall::
+	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
+	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+    return
 
 DewfordTown_Gym_EventScript_GiveBulkUp:: @ 81FC855
 	giveitem ITEM_TM08
