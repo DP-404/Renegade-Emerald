@@ -64,7 +64,9 @@ LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall:: @ 81F9334
 	end
 	
 LittlerootTown_RivalsHouse_2F_EventScript_GiveStarterConfirmation::
+	showmonpic SPECIES_EEVEE, 10, 3
 	msgbox RivalsHouse_2F_Text_TakeBallContainingStarter, MSGBOX_YESNO
+	hidemonpic
 	compare VAR_RESULT, NO
 	goto_if_eq LittlerootTown_RivalsHouse_2F_EventScript_LeaveStarter
 	goto LittlerootTown_RivalsHouse_2F_EventScript_GiveStarter
