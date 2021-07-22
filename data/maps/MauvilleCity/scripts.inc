@@ -446,10 +446,6 @@ MauvilleCity_EventScript_CompletedNewMauville:: @ 81DF784
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_TM24_FROM_WATTSON
-	msgbox MauvilleCity_Text_WattsonAlsoTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_GO_GOGGLES
-	setflag FLAG_RECEIVED_GO_GOGGLES
-	msgbox MauvilleCity_Text_WattsonExplainGoGoggles, MSGBOX_DEFAULT
 	msgbox MauvilleCity_Text_WattsonYoungTakeCharge, MSGBOX_DEFAULT
 	release
 	end

@@ -163,16 +163,6 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
 
 RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
 	msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT
-	giveitem ITEM_SS_TICKET
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_SS_TICKET
-	call RustboroCity_DevonCorp_3F_EventScript_HideMrBriney
-	setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
-	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
-	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
-	setflag FLAG_SAIL_TO_DEWFORD
-	msgbox RustboroCity_DevonCorp_3F_Text_AfterGivingTicket, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -267,7 +257,14 @@ RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter: @ 8212A29
 	.string "This is my way of thanking you.\n"
 	.string "It should help you, a TRAINER.$"
 
-RustboroCity_DevonCorp_3F_Text_AfterGivingTicket:
+RustboroCity_DevonCorp_3F_Text_AfterGivingGoggles:
+	.string "MR.STONE: These are our new\n"
+	.string "GO-GOGGLES. If you wear them, not even\l"
+	.string "the strongest sandstorms will be able\l"
+	.string "you stop you.\p"
+	.string "I hope you find this reward pleasant.$"
+
+RustboroCity_DevonCorp_3F_Text_ExplainTicket:
 	.string "MR.STONE: This is the ticket needed\n"
 	.string "to board the ferry S.S. TIDAL in\l"
 	.string "the HARBOR of SLATEPORT CITY.\p"

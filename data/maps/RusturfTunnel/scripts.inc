@@ -68,10 +68,16 @@ RusturfTunnel_EventScript_ClearTunnelScene:: @ 822CEAE
 	call_if_eq RusturfTunnel_EventScript_WandasBoyfriendApproachPlayer
 	compare VAR_TEMP_1, 3
 	call_if_eq RusturfTunnel_EventScript_WandasBoyfriendApproachPlayer
-	giveitem ITEM_HM04
-	setflag FLAG_RECEIVED_HM04
-	call_if_unset FLAG_DELIVERED_STEVEN_LETTER, RusturfTunnel_EventScript_MoveMrBrineyToShipyard
-	msgbox RusturfTunnel_Text_ExplainStrength, MSGBOX_DEFAULT
+	giveitem ITEM_SS_TICKET
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_SS_TICKET
+	call RustboroCity_DevonCorp_3F_EventScript_HideMrBriney
+	setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
+	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
+	setflag FLAG_SAIL_TO_DEWFORD
+	msgbox RusturfTunnel_Text_ExplainTicket, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_TEMP_1, 1
 	call_if_eq RusturfTunnel_EventScript_BoyfriendApproachWanda1
@@ -511,7 +517,15 @@ RusturfTunnel_Text_YouShatteredBoulderTakeHM: @ 822D65C
 	.string "Wow! You shattered that boulder\n"
 	.string "blocking the way.\p"
 	.string "To show you how much I appreciate it,\n"
-	.string "I'd like you to have this HM.$"
+	.string "I'd like you to have this ticket.$"
+
+RusturfTunnel_Text_ExplainTicket:
+	.string "That's the ticket needed to board\n"
+	.string "the ferry S.S Tidal in the harbor\l"
+	.string "of SLATEPORT CITY.\p"
+	.string "The ferry was recently built and\n"
+	.string "will allow you to travel between\l"
+	.string "SLATEPORT, LILYCOVE and DEWFORD.$"
 
 RusturfTunnel_Text_ExplainStrength: @ 822D6D2
 	.string "That HM contains STRENGTH.\p"
