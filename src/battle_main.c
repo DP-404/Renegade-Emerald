@@ -3961,10 +3961,10 @@ static void HandleTurnActionSelectionState(void)
                     BtlController_EmitEndBounceEffect(0);
                     MarkBattlerForControllerExec(gActiveBattler);
                     return;
-                case B_ACTION_DEBUG:
-                    BtlController_EmitDebugMenu(0);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                    break;
+                //case B_ACTION_DEBUG:
+                    //BtlController_EmitDebugMenu(0);
+                    //MarkBattlerForControllerExec(gActiveBattler);
+                    //break;
                 }
 
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
