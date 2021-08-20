@@ -568,6 +568,51 @@
       "var": "VAR_ROUTE104_STATE",
       "var_value": "1",
       "script": "Route104_EventScript_RivalTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_DEX_UPGRADE_JOHTO_STARTER_STATE",
+      "var_value": "1",
+      "script": "ProfBirch_EventScript_BirchCallCheckBadge"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_DEX_UPGRADE_JOHTO_STARTER_STATE",
+      "var_value": "1",
+      "script": "ProfBirch_EventScript_BirchCallCheckBadge"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 61,
+      "elevation": 0,
+      "var": "VAR_DEX_UPGRADE_JOHTO_STARTER_STATE",
+      "var_value": "1",
+      "script": "ProfBirch_EventScript_BirchCallCheckBadge"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 62,
+      "elevation": 0,
+      "var": "VAR_DEX_UPGRADE_JOHTO_STARTER_STATE",
+      "var_value": "1",
+      "script": "ProfBirch_EventScript_BirchCallCheckBadge"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 63,
+      "elevation": 0,
+      "var": "VAR_DEX_UPGRADE_JOHTO_STARTER_STATE",
+      "var_value": "1",
+      "script": "ProfBirch_EventScript_BirchCallCheckBadge"
     }
   ],
   "bg_events": [

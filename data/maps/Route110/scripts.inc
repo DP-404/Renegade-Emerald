@@ -645,17 +645,8 @@ Route110_EventScript_BirchScene:: @ 81EF9F7
 	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 30
-	msgbox Route110_Text_HeardYouInstallMatchCall, MSGBOX_DEFAULT
-	closemessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
-	msgbox Route110_Text_KeepAnEyeOutForRival, MSGBOX_DEFAULT
-	closemessage
+	call_if_set FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, Route110_EventScript_BirchRegistered
+	call_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, Route110_EventScript_RegisterBirch
 	compare VAR_0x8008, 1
 	call_if_eq Route110_EventScript_BirchExit1
 	compare VAR_0x8008, 2
@@ -668,6 +659,25 @@ Route110_EventScript_BirchScene:: @ 81EF9F7
 	setvar VAR_REGISTER_BIRCH_STATE, 2
 	releaseall
 	end
+
+Route110_EventScript_RegisterBirch::
+	msgbox Route110_Text_HeardYouInstallMatchCall, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+	msgbox Route110_Text_KeepAnEyeOutForRival, MSGBOX_DEFAULT
+	closemessage
+	return
+
+Route110_EventScript_BirchRegistered::
+	msgbox Route110_Text_YouTwoRunningSeparately, MSGBOX_DEFAULT
+	closemessage
+	return
 
 Route110_EventScript_BirchApproachPlayer1:: @ 81EFAD8
 	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer1
@@ -1010,6 +1020,26 @@ Route110_Text_HeardYouInstallMatchCall: @ 81F0AFF
 	.string "I can rate your POKéDEX anytime.\p"
 	.string "… … … … … …$"
 
+Route110_Text_YouTwoRunningSeparately: @ 81F0AFF
+	.string "Oh, I see!\n"
+	.string "You two are running separately.\l"
+	.string "Well, that's fine.\p"
+	.string "{PLAYER}{KUN}…\p"
+	.string "Please keep an eye out for my {RIVAL}.\p"
+	.string "Before I forget, I have to tell you\n"
+	.string "something important.\p"
+	.string "I have some assistants working\n"
+	.string "with me ingestigating POKéMON.\p"
+	.string "I gave them a gift for both you\n"
+	.string "and {RIVAL}, but they'll only\l"
+	.string "give you them according to\l"
+	.string "your work in your POKéDEX."
+	.string "Have you already met any of them\n"
+	.string "in your way here?\p"
+	.string "… … … … … …\p"
+	.string "Well, I had better get going.\n"
+	.string "See you again, {PLAYER}{KUN}!$"
+	
 Route110_Text_RegisteredBirchInPokenav: @ 81F0C0C
 	.string "Registered PROF. BIRCH\n"
 	.string "in the POKéNAV.$"

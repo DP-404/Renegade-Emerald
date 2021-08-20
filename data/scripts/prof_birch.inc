@@ -88,6 +88,75 @@ ProfBirch_EventScript_RatePokedex:: @ 8272184
 	buffernumberstring 1, VAR_0x8009  @ Num National caught
 	msgbox gBirchDexRatingText_OnANationwideBasis, MSGBOX_DEFAULT
 	return
+
+ProfBirch_EventScript_PrepareBirchCall::
+	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
+	return
+
+ProfBirch_EventScript_BirchCallCheckBadge::
+	goto_if_set FLAG_BADGE01_GET, ProfBirch_EventScript_BirchCall
+	goto_if_set FLAG_BADGE02_GET, ProfBirch_EventScript_BirchCall
+	goto_if_set FLAG_BADGE03_GET, ProfBirch_EventScript_BirchCall
+	end
+	
+ProfBirch_EventScript_BirchCall::
+	call_if_set FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, ProfBirch_EventScript_BirchCallRegistered
+	call_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, ProfBirch_EventScript_BirchCallNotRegistered
+	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4
+	end
+
+ProfBirch_EventScript_BirchCallRegistered::
+	lockall
+	pokenavcall ProfBirch_Text_BirchFirstBadgeCallRegistered
+	waitmessage
+	releaseall
+	return
+
+ProfBirch_EventScript_BirchCallNotRegistered::
+	lockall
+	pokenavcall ProfBirch_Text_BirchFirstBadgeCallNotRegistered
+	waitmessage
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+	releaseall
+	return
+
+ProfBirch_Text_BirchFirstBadgeCallRegistered:
+	.string "PROF. BIRCH: Hey {PLAYER}!\n"
+	.string "How are you?\p"
+	.string "Is your POKéDEX doing well? Remember\n"
+	.string "to search everywhere and catch\l"
+	.string "every POKéMON you see.\p"
+	.string "Oh, so you have challenged a GYM and\n"
+	.string "obtained your first badge?\p"
+	.string "You're just like your father NORMAN\n"
+	.string "when he was your age.\p"
+	.string "By the way, I have a present for you.\n"
+	.string "Come by my lab when you can.\p"
+	.string "I'll be waiting for you, {PLAYER}.\n"
+	.string "Take care!$"
+
+ProfBirch_Text_BirchFirstBadgeCallNotRegistered:
+	.string "PROF. BIRCH: Hey {PLAYER}!\n"
+	.string "How are you?\p"
+	.string "MR. STONE told me that he had given\n"
+	.string "you a POKéNAV, so I decided to\l"
+	.string "tell you something.\p"
+	.string "You can call me when you want,\n"
+	.string "that way, even when we are apart\l"
+	.string "I can rate your POKéDEX.\p"
+	.string "Oh, so you have challenged a GYM and\n"
+	.string "obtained your first badge?\p"
+	.string "You're just like your father NORMAN\n"
+	.string "when he was your age.\p"
+	.string "By the way, I have a present for you.\n"
+	.string "Come by my lab when you can.\p"
+	.string "I'll be waiting for you, {PLAYER}.\n"
+	.string "Take care!$"
 	
 ProfBirch_EventScript_CheckLastHM::
 	call_if_unset ITEM_HM08, ProfBirch_EventScript_CheckIfCanGetHM
@@ -115,6 +184,10 @@ gProfBirch_Text_LookForAssistantHM::
 @ VAR_0x800A: Talking to 0-Scientist, 1-Prof.Cozmos
 
 ScientistAssistant_EventScript_Main::
+	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4
+	goto_if_eq ScientistAssistant_EventScript_ProfWaitingForYou
+	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5
+	goto_if_eq ScientistAssistant_EventScript_ProfWaitingForYou
 	special SetNextHMToGetAssistant
 	compare VAR_0x800A, 1
 	call_if_eq ScientistAssistant_EventScript_ProfCozmosCheckGreeting
@@ -122,6 +195,11 @@ ScientistAssistant_EventScript_Main::
 	compare VAR_0x8004, 1
 	goto_if_eq ScientistAssistant_EventScript_HaveEnoughPokemon
 	goto ScientistAssistant_EventScript_DoNotHaveEnoughPokemon
+
+ScientistAssistant_EventScript_ProfWaitingForYou::
+	msgbox ScientistAssistant_Text_ProfWaitingForYou, MSGBOX_DEFAULT
+	closemessage
+	end
 
 ScientistAssistant_EventScript_ProfCozmosCheckGreeting::
 	call_if_unset FLAG_TALKED_HM04, ScientistAssistant_EventScript_ProfCozmosGreeting
@@ -357,6 +435,12 @@ ScientistAssistant_EventScript_DiveAssistantDialog::
 	closemessage
 	release
 	end
+
+ScientistAssistant_Text_ProfWaitingForYou:
+	.string "Haven't you gone to\n"
+	.string "PROF. BIRCH's lab yet?\p"
+	.string "He said he had something to give you.\n"
+	.string "You should go and check.$"
 
 ScientistAssistant_Text_ProfCozmosDirectCheck:
 	.string "PROF. COZMOS: When you catch more than\n"

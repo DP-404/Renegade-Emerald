@@ -71,6 +71,7 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setvar VAR_DEVON_CORP_3F_STATE, 1
 	setvar VAR_RUSTBORO_CITY_STATE, 6
+	call_if_set FLAG_BADGE01_GET, ProfBirch_EventScript_PrepareBirchCall
 	releaseall
 	end
 
